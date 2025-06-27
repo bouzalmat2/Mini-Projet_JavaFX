@@ -2,11 +2,21 @@ package com.mycompany.javafx_mvc.models;
 
 public class Eleve {
     private int id;
-    private String code;
-    private String nom;
-    private String prenom;
-    private String niveau;
-    private String codeFiliere;
+    private String code,nom, prenom,niveau,codeFiliere;
+    
+    
+    public Eleve(int id, String code, String nom, String prenom, String niveau, String codeFiliere){
+         this.id = id;
+        this.code = code;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.niveau = niveau;
+        this.codeFiliere = codeFiliere;
+    
+    
+    }
+   
+  
 
     public int getId() {
         return id;

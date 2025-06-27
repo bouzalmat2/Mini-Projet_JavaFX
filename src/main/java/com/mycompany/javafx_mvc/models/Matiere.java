@@ -8,6 +8,19 @@ public class Matiere {
     private int VH;
     private String codeModule;
 
+    public Matiere(int id, String code, String designation, int VH, String codeModule) {
+        this.id = id;
+        this.code = code;
+        this.designation = designation;
+        this.VH = VH;
+        this.codeModule = codeModule;
+    }
+    
+    
+    
+    
+    
+
     public int getId() {
         return id;
     }

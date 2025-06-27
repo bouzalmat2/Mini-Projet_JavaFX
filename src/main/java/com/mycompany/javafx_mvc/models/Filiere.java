@@ -5,6 +5,16 @@ public class Filiere {
     private String code;
     private String designation;
 
+    public Filiere(int id, String code, String designation) {
+        this.id = id;
+        this.code = code;
+        this.designation = designation;
+    }
+    
+    
+    
+    
+
     public int getId() {
         return id;
     }
