@@ -23,7 +23,7 @@ public class MainController implements Initializable {
         btn_logout.setOnAction(new EventHandler<ActionEvent>(){
             @Override
             public void handle(ActionEvent event) {
-                LoginDAO.changeScene(event,"Login.fxml","Main", null)
+                LoginDAO.changeScene(event,"Login.fxml","Login", null);
             }
         });
     } 
