@@ -2,6 +2,7 @@ package com.mycompany.javafx_mvc.dao;
 
 import com.mycompany.javafx_mvc.controllers.MainController;
 import com.mycompany.javafx_mvc.db.Connexion;
+import com.mycompany.javafx_mvc.dao.LoginDAO;
 import java.io.*;
 import java.util.*;
 import java.sql.*;
@@ -46,7 +47,7 @@ public class LoginDAO {
         stage.show();
     }
     
-    public void login_user(ActionEvent event, String username, String password){
+    public void login_user(ActionEvent event, String username, String password) throws SQLException{
         PreparedStatement Pstm = null;
         ResultSet rs = null ;
         
@@ -65,10 +66,13 @@ public class LoginDAO {
                     String nm = rs.getString("name");
                     String usnm = rs.getString("username");
                     String pwd = rs.getString("password");
+                    if(pwd.equals(password)){
+                        LoginDAO.changeScene(event, "Main.fxml", "Main", nm);
+                    }
                 }
             }
             
-        }catch(IOException ex){
+        }catch(Exception ex){
             System.err.println("Error : "+ ex.getMessage());
         }
     }
