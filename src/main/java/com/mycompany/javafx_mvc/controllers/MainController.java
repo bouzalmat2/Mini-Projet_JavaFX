@@ -1,26 +1,34 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package com.mycompany.javafx_mvc.controllers;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.*;
 
-/**
- * FXML Controller class
- *
- * @author Dell
- */
+
 public class MainController implements Initializable {
 
-    /**
-     * Initializes the controller class.
-     */
+    @FXML
+    private Label lbl_welcome;
+    
+    @FXML
+    private Button btn_logout;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+        btn_logout.setOnAction(new EventHandler<ActionEvent>(){
+            @Override
+            public void handle(ActionEvent t) {
+                
+            }
+        });
+    } 
+    
+    public void set_name(String name){
+        lbl_welcome.setText("Welcome "+ name + " !");
+    }
     
 }
