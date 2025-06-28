@@ -1,5 +1,6 @@
 package com.mycompany.javafx_mvc.controllers;
 
+import com.mycompany.javafx_mvc.dao.LoginDAO;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -21,8 +22,8 @@ public class MainController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         btn_logout.setOnAction(new EventHandler<ActionEvent>(){
             @Override
-            public void handle(ActionEvent t) {
-                
+            public void handle(ActionEvent event) {
+                LoginDAO.changeScene(event,"Login.fxml","Main", null)
             }
         });
     } 
