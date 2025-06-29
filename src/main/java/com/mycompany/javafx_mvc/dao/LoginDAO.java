@@ -2,79 +2,85 @@ package com.mycompany.javafx_mvc.dao;
 
 import com.mycompany.javafx_mvc.controllers.MainController;
 import com.mycompany.javafx_mvc.db.Connexion;
-import com.mycompany.javafx_mvc.dao.LoginDAO;
 import java.io.*;
-import java.util.*;
 import java.sql.*;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.event.*;
+import javafx.fxml.*;
+import javafx.scene.*;
 import javafx.scene.control.Alert;
-import javafx.stage.Stage;
+import javafx.stage.*;
 
 public class LoginDAO {
     private final Connection con;
     
-    public LoginDAO(){
-        con=Connexion.getConnection();
+    public LoginDAO() {
+        con = Connexion.getConnection();
     }
     
-    
-    public static void changeScene(ActionEvent event, String fxmlFile, String title, String name){
-        Parent root = null; 
+    public void changeScene(ActionEvent event, String fxmlFile, String title, String name) {
+        Parent root = null;
         
-        if(name != null){
-            try{
-                FXMLLoader loader = new FXMLLoader(LoginDAO.class.getResource(fxmlFile));
+        try {
+            if (name != null) {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
                 root = loader.load();
-                MainController mncntrl = loader.getController();
-                mncntrl.set_name(name);
-            }catch(IOException ex){
-                System.err.println("Error : "+ ex.getMessage());
+                MainController mainController = loader.getController();
+                mainController.setName(name);
+            } else {
+                root = FXMLLoader.load(getClass().getResource(fxmlFile));
             }
-        }else{
-            try{
-                root = FXMLLoader.load(LoginDAO.class.getResource(fxmlFile));
-            }catch(IOException ex){
-                System.err.println("Error : "+ ex.getMessage());
-            }
+            
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setTitle(title);
+            stage.setScene(new Scene(root, 600, 400));
+            stage.show();
+        } catch (IOException ex) {
+            System.err.println("Error loading FXML: " + ex.getMessage());
+            showAlert("Error", "Failed to load view", Alert.AlertType.ERROR);
         }
-        
-        Stage stage = new (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setTitle(title);
-        stage.setScene(new Scene(root, 600, 400));
-        stage.show();
     }
     
-    public void login_user(ActionEvent event, String username, String password) throws SQLException{
-        PreparedStatement Pstm = null;
-        ResultSet rs = null ;
+    public void loginUser(ActionEvent event, String username, String password) {
+        String sql = "SELECT name, password FROM user WHERE username = ?";
         
-        try{
-            Pstm = con.prepareStatement("SELECT name, username, password FROM user WHERE username = ?");
-            Pstm.setString(2, username);
-            rs = Pstm.executeQuery();
+        try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+            pstmt.setString(1, username);  // Fixed parameter index (was 2, now 1)
             
-            if(!rs.isBeforeFirst()){
-                System.out.println("User not found !");
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setContentText("Username's incorrect!");
-                alert.show();
-            }else{
-                while(rs.next()){
-                    String nm = rs.getString("name");
-                    String usnm = rs.getString("username");
-                    String pwd = rs.getString("password");
-                    if(pwd.equals(password)){
-                        LoginDAO.changeScene(event, "Main.fxml", "Main", nm);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (!rs.next()) {
+                    showAlert("Login Failed", "Username incorrect", Alert.AlertType.ERROR);
+                } else {
+                    String storedName = rs.getString("name");
+                    String storedPassword = rs.getString("password");
+                    
+                    if (storedPassword.equals(password)) {
+                        changeScene(event, "Main.fxml", "Main", storedName);
+                    } else {
+                        showAlert("Login Failed", "Password incorrect", Alert.AlertType.ERROR);
                     }
                 }
             }
-            
-        }catch(Exception ex){
-            System.err.println("Error : "+ ex.getMessage());
+        } catch (SQLException ex) {
+            System.err.println("Database error: " + ex.getMessage());
+            showAlert("Error", "Database error occurred", Alert.AlertType.ERROR);
         }
     }
     
+    private void showAlert(String title, String message, Alert.AlertType alertType) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.show();
+    }
+    
+    public void close() {
+        try {
+            if (con != null) {
+                con.close();
+            }
+        } catch (SQLException ex) {
+            System.err.println("Error closing connection: " + ex.getMessage());
+        }
+    }
 }

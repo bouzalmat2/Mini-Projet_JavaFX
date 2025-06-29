@@ -9,7 +9,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
-
 public class MainController implements Initializable {
 
     @FXML
@@ -23,13 +22,13 @@ public class MainController implements Initializable {
         btn_logout.setOnAction(new EventHandler<ActionEvent>(){
             @Override
             public void handle(ActionEvent event) {
-                LoginDAO.changeScene(event,"Login.fxml","Login", null);
+                // Create LoginDAO instance instead of static call
+                new LoginDAO().changeScene(event, "Login.fxml", "Login", null);
             }
         });
     } 
     
-    public void set_name(String name){
+    public void setName(String name){
         lbl_welcome.setText("Welcome "+ name + " !");
     }
-    
 }
