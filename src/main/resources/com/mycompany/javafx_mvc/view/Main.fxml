@@ -3,59 +3,101 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.FontWeight?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.geometry.Insets?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.javafx_mvc.controllers.MainController">
-   <children>
-      <AnchorPane prefHeight="229.0" prefWidth="600.0" style="-fx-background-color: #ebebeb;">
-         <children>
-            <Pane layoutX="36.0" layoutY="31.0" prefHeight="338.0" prefWidth="529.0" style="-fx-background-color: white; -fx-border-radius: 20px;">
-               <children>
-                  <Button layoutX="229.0" layoutY="105.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="72.0" style="-fx-background-color: #8e8e8e;" text="Etudiant" textFill="WHITE">
-                     <font>
-                        <Font name="Arial Black" size="12.0" />
-                     </font>
-                  </Button>
-                  <Button layoutX="74.0" layoutY="105.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="72.0" style="-fx-background-color: #8e8e8e;" text="Etudiant" textFill="WHITE">
-                     <font>
-                        <Font name="Arial Black" size="12.0" />
-                     </font>
-                  </Button>
-                  <Button layoutX="387.0" layoutY="105.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="72.0" style="-fx-background-color: #8e8e8e;" text="Etudiant" textFill="WHITE">
-                     <font>
-                        <Font name="Arial Black" size="12.0" />
-                     </font>
-                  </Button>
-                  <Button layoutX="229.0" layoutY="249.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="72.0" style="-fx-background-color: #8e8e8e;" text="Etudiant" textFill="WHITE">
-                     <font>
-                        <Font name="Arial Black" size="12.0" />
-                     </font>
-                  </Button>
-                  <Button layoutX="74.0" layoutY="249.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="72.0" style="-fx-background-color: #8e8e8e;" text="Etudiant" textFill="WHITE">
-                     <font>
-                        <Font name="Arial Black" size="12.0" />
-                     </font>
-                  </Button>
-                  <Button layoutX="387.0" layoutY="249.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="72.0" style="-fx-background-color: #8e8e8e;" text="Etudiant" textFill="WHITE">
-                     <font>
-                        <Font name="Arial Black" size="12.0" />
-                     </font>
-                  </Button>
-               </children>
-            </Pane>
-            <Button fx:id="btn_logout" layoutX="541.0" layoutY="3.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="59.0" style="-fx-background-color: transparent;" text="Logout" textFill="BLUE">
-               <font>
-                  <Font name="Arial Bold" size="12.0" />
-               </font>
-            </Button>
-            <Label fx:id="lbl_welcome" layoutX="411.0" layoutY="7.0" prefHeight="15.0" prefWidth="130.0" text="welcome !">
-               <font>
-                  <Font name="Arial Bold" size="12.0" />
-               </font>
-            </Label>
-         </children>
-      </AnchorPane>
-   </children>
-</HBox>
+<BorderPane prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.javafx_mvc.controllers.MainController" style="-fx-background-color: #f5f5f5;">
+   
+   <!-- Left Sidebar -->
+   <left>
+      <VBox prefWidth="250.0" style="-fx-background-color: #2c2c2c;" spacing="0">
+         <!-- Header -->
+         <VBox style="-fx-background-color: #1a1a1a; -fx-padding: 20;">
+            <Label text="ENSI TANGER" style="-fx-text-fill: white; -fx-font-size: 18px; -fx-font-weight: bold;" alignment="CENTER"/>
+            <Label text="Gestion des Notes" style="-fx-text-fill: #cccccc; -fx-font-size: 12px;" alignment="CENTER"/>
+         </VBox>
+         
+         <Separator style="-fx-background-color: #404040;"/>
+         
+         <!-- Navigation Menu -->
+         <VBox spacing="5" style="-fx-padding: 20;">
+            <Button fx:id="btn_etudiants" text="📚 Étudiants" onAction="#openEtudiants" 
+                    style="-fx-background-color: transparent; -fx-text-fill: #cccccc; -fx-font-size: 14px; -fx-font-weight: bold; -fx-padding: 12 15; -fx-border-radius: 5; -fx-background-radius: 5; -fx-cursor: hand; -fx-alignment: CENTER_LEFT; -fx-min-width: 200; -fx-max-width: 200;"/>
+            <Button fx:id="btn_notes" text="📊 Notes" onAction="#openNotes"
+                    style="-fx-background-color: transparent; -fx-text-fill: #cccccc; -fx-font-size: 14px; -fx-font-weight: bold; -fx-padding: 12 15; -fx-border-radius: 5; -fx-background-radius: 5; -fx-cursor: hand; -fx-alignment: CENTER_LEFT; -fx-min-width: 200; -fx-max-width: 200;"/>
+            <Button fx:id="btn_consultation" text="🔍 Consultation" onAction="#openConsultation"
+                    style="-fx-background-color: transparent; -fx-text-fill: #cccccc; -fx-font-size: 14px; -fx-font-weight: bold; -fx-padding: 12 15; -fx-border-radius: 5; -fx-background-radius: 5; -fx-cursor: hand; -fx-alignment: CENTER_LEFT; -fx-min-width: 200; -fx-max-width: 200;"/>
+            <Button fx:id="btn_archives" text="📁 Archives" onAction="#openArchives"
+                    style="-fx-background-color: transparent; -fx-text-fill: #cccccc; -fx-font-size: 14px; -fx-font-weight: bold; -fx-padding: 12 15; -fx-border-radius: 5; -fx-background-radius: 5; -fx-cursor: hand; -fx-alignment: CENTER_LEFT; -fx-min-width: 200; -fx-max-width: 200;"/>
+         </VBox>
+         
+         <VBox VBox.vgrow="ALWAYS"/>
+         
+         <!-- User Info -->
+         <VBox style="-fx-background-color: #1a1a1a; -fx-padding: 20;">
+            <Label fx:id="lbl_welcome" text="Bienvenue !" style="-fx-text-fill: white; -fx-font-size: 14px;" alignment="CENTER"/>
+            <Button fx:id="btn_logout" text="🚪 Déconnexion" onAction="#logout"
+                    style="-fx-background-color: #d32f2f; -fx-text-fill: white; -fx-font-size: 12px; -fx-font-weight: bold; -fx-padding: 8 15; -fx-border-radius: 5; -fx-background-radius: 5; -fx-cursor: hand; -fx-min-width: 150;"/>
+         </VBox>
+      </VBox>
+   </left>
+   
+   <!-- Main Content Area -->
+   <center>
+      <VBox style="-fx-background-color: white; -fx-padding: 30;">
+         <!-- Welcome Section -->
+         <VBox spacing="20" alignment="CENTER">
+            <Label text="Tableau de Bord" style="-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #2c2c2c;"/>
+            <Label text="Système de Gestion des Notes - ENSI Tanger" style="-fx-font-size: 16px; -fx-text-fill: #666666;"/>
+         </VBox>
+         
+         <Separator style="-fx-background-color: #e0e0e0; -fx-padding: 20 0;"/>
+         
+         <!-- Quick Stats -->
+         <HBox spacing="30" alignment="CENTER" style="-fx-padding: 20 0;">
+            <VBox alignment="CENTER" spacing="10" style="-fx-background-color: #f8f9fa; -fx-border-color: #e0e0e0; -fx-border-width: 1; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 20; -fx-min-width: 120; -fx-min-height: 100;">
+               <Label text="👥" style="-fx-font-size: 24px;"/>
+               <Label text="Étudiants" style="-fx-font-size: 14px; -fx-text-fill: #666666;"/>
+               <Label text="0" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2c2c2c;"/>
+            </VBox>
+            
+            <VBox alignment="CENTER" spacing="10" style="-fx-background-color: #f8f9fa; -fx-border-color: #e0e0e0; -fx-border-width: 1; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 20; -fx-min-width: 120; -fx-min-height: 100;">
+               <Label text="📚" style="-fx-font-size: 24px;"/>
+               <Label text="Matières" style="-fx-font-size: 14px; -fx-text-fill: #666666;"/>
+               <Label text="0" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2c2c2c;"/>
+            </VBox>
+            
+            <VBox alignment="CENTER" spacing="10" style="-fx-background-color: #f8f9fa; -fx-border-color: #e0e0e0; -fx-border-width: 1; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 20; -fx-min-width: 120; -fx-min-height: 100;">
+               <Label text="📊" style="-fx-font-size: 24px;"/>
+               <Label text="Notes" style="-fx-font-size: 14px; -fx-text-fill: #666666;"/>
+               <Label text="0" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2c2c2c;"/>
+            </VBox>
+            
+            <VBox alignment="CENTER" spacing="10" style="-fx-background-color: #f8f9fa; -fx-border-color: #e0e0e0; -fx-border-width: 1; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 20; -fx-min-width: 120; -fx-min-height: 100;">
+               <Label text="🎓" style="-fx-font-size: 24px;"/>
+               <Label text="Filières" style="-fx-font-size: 14px; -fx-text-fill: #666666;"/>
+               <Label text="0" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2c2c2c;"/>
+            </VBox>
+         </HBox>
+         
+         <!-- Quick Actions -->
+         <VBox spacing="15" style="-fx-padding: 30 0;">
+            <Label text="Actions Rapides" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #2c2c2c;"/>
+            <HBox spacing="15">
+               <Button text="➕ Ajouter un Étudiant" onAction="#openEtudiants"
+                       style="-fx-background-color: #2c2c2c; -fx-text-fill: white; -fx-font-size: 12px; -fx-font-weight: bold; -fx-padding: 10 20; -fx-border-radius: 5; -fx-background-radius: 5; -fx-cursor: hand; -fx-min-width: 150;"/>
+               <Button text="📝 Saisir des Notes" onAction="#openNotes"
+                       style="-fx-background-color: #2c2c2c; -fx-text-fill: white; -fx-font-size: 12px; -fx-font-weight: bold; -fx-padding: 10 20; -fx-border-radius: 5; -fx-background-radius: 5; -fx-cursor: hand; -fx-min-width: 150;"/>
+               <Button text="🔍 Consulter les Résultats" onAction="#openConsultation"
+                       style="-fx-background-color: #2c2c2c; -fx-text-fill: white; -fx-font-size: 12px; -fx-font-weight: bold; -fx-padding: 10 20; -fx-border-radius: 5; -fx-background-radius: 5; -fx-cursor: hand; -fx-min-width: 150;"/>
+            </HBox>
+         </VBox>
+      </VBox>
+   </center>
+   
+</BorderPane>
