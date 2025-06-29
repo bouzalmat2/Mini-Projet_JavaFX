@@ -28,6 +28,26 @@ public class FiliereDAO {
     }
      
      
+     
+      public List<String> getAllCodesFilieres() {
+        List<String> codes = new ArrayList<>();
+        String sql = "SELECT code FROM Filiere";
+
+        try (Statement stmt = con.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+
+            while (rs.next()) {
+                codes.add(rs.getString("code"));
+            }
+
+        } catch (Exception e) {
+            System.out.println("Erreur getAllCodesFilieres: " + e.getMessage());
+        }
+
+        return codes;
+    }
+     
+     
      public List<String> getNiveauxByFiliere(String codeFil) {
         List<String> niveaux = new ArrayList<>();
         String sql = "SELECT DISTINCT niveau FROM Module WHERE code_fil = ?";

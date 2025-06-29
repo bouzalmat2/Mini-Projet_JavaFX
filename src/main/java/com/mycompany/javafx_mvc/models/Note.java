@@ -14,6 +14,18 @@ public class Note {
     private String codeMatiere;
     private double note;
 
+    public Note(int id, String codeEleve, String codeMatiere, double note) {
+        this.id = id;
+        this.codeEleve = codeEleve;
+        this.codeMatiere = codeMatiere;
+        this.note = note;
+    }
+    
+    
+    
+    
+    
+
     public int getId() {
         return id;
     }

@@ -15,6 +15,19 @@ public class Moyenne {
     private String niveau;
     private double moyenne;
 
+    public Moyenne(int id, String codeEleve, String codeFiliere, String niveau, double moyenne) {
+        this.id = id;
+        this.codeEleve = codeEleve;
+        this.codeFiliere = codeFiliere;
+        this.niveau = niveau;
+        this.moyenne = moyenne;
+    }
+    
+    
+    
+    
+    
+
     public int getId() {
         return id;
     }

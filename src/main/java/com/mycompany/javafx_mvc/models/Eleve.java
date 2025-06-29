@@ -6,7 +6,7 @@ public class Eleve {
     
     
     public Eleve(int id, String code, String nom, String prenom, String niveau, String codeFiliere){
-         this.id = id;
+        this.id = id;
         this.code = code;
         this.nom = nom;
         this.prenom = prenom;
@@ -15,6 +15,16 @@ public class Eleve {
     
     
     }
+       public Eleve( String code, String nom, String prenom, String niveau, String codeFiliere){
+        this.code = code;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.niveau = niveau;
+        this.codeFiliere = codeFiliere;
+    
+    
+    }
+   
    
   
 

@@ -22,4 +22,27 @@ public class NoteDAO {
         }
     }
     
+    
+    
+    public List<Note> getNotesParEleve(String codeEleve) {
+        List<Note> liste = new ArrayList<>();
+        String sql = "SELECT * FROM Notes WHERE code_eleve = ?";
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, codeEleve);
+            ResultSet RS = ps.executeQuery();
+            while (RS.next()) {
+                liste.add(new Note(
+                    RS.getInt("id"),
+                    RS.getString("code_eleve"),
+                    RS.getString("code_mat"),
+                    RS.getDouble("note")
+                ));
+            }
+        } catch (SQLException ex) {
+              System.out.println("Erreur!!!"+ex.getMessage());
+        }
+        return liste;
+    }
+
+    
 }

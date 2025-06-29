@@ -22,7 +22,7 @@ public class MainController implements Initializable {
         btn_logout.setOnAction(new EventHandler<ActionEvent>(){
             @Override
             public void handle(ActionEvent event) {
-                // Create LoginDAO instance instead of static call
+               
                 new LoginDAO().changeScene(event, "view/Login.fxml", "Login - Student Grade Management System", null);
             }
         });
