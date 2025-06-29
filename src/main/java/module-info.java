@@ -5,5 +5,7 @@ module com.mycompany.javafx_mvc {
     requires java.sql;
 
     opens com.mycompany.javafx_mvc to javafx.fxml;
+    opens com.mycompany.javafx_mvc.controllers to javafx.fxml;
     exports com.mycompany.javafx_mvc;
+    exports com.mycompany.javafx_mvc.controllers;
 }

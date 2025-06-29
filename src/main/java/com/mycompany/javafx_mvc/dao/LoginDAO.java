@@ -22,12 +22,12 @@ public class LoginDAO {
         
         try {
             if (name != null) {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/mycompany/javafx_mvc/" + fxmlFile));
                 root = loader.load();
                 MainController mainController = loader.getController();
                 mainController.setName(name);
             } else {
-                root = FXMLLoader.load(getClass().getResource(fxmlFile));
+                root = FXMLLoader.load(getClass().getResource("/com/mycompany/javafx_mvc/" + fxmlFile));
             }
             
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -54,7 +54,7 @@ public class LoginDAO {
                     String storedPassword = rs.getString("password");
                     
                     if (storedPassword.equals(password)) {
-                        changeScene(event, "Main.fxml", "Main", storedName);
+                        changeScene(event, "view/Main.fxml", "Main", storedName);
                     } else {
                         showAlert("Login Failed", "Password incorrect", Alert.AlertType.ERROR);
                     }

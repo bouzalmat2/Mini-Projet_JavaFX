@@ -4,28 +4,57 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.javafx_mvc.controllers.MainController">
    <children>
-      <AnchorPane prefHeight="400.0" prefWidth="611.0" style="-fx-background-color: #ffffff;">
+      <AnchorPane prefHeight="229.0" prefWidth="600.0" style="-fx-background-color: #ebebeb;">
          <children>
-            <Label fx:id="lbl_welcome" layoutX="221.0" layoutY="86.0" prefHeight="28.0" prefWidth="159.0" text="welcome !">
+            <Pane layoutX="36.0" layoutY="31.0" prefHeight="338.0" prefWidth="529.0" style="-fx-background-color: white; -fx-border-radius: 20px;">
+               <children>
+                  <Button layoutX="229.0" layoutY="105.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="72.0" style="-fx-background-color: #8e8e8e;" text="Etudiant" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Black" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="74.0" layoutY="105.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="72.0" style="-fx-background-color: #8e8e8e;" text="Etudiant" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Black" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="387.0" layoutY="105.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="72.0" style="-fx-background-color: #8e8e8e;" text="Etudiant" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Black" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="229.0" layoutY="249.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="72.0" style="-fx-background-color: #8e8e8e;" text="Etudiant" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Black" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="74.0" layoutY="249.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="72.0" style="-fx-background-color: #8e8e8e;" text="Etudiant" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Black" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="387.0" layoutY="249.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="72.0" style="-fx-background-color: #8e8e8e;" text="Etudiant" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Black" size="12.0" />
+                     </font>
+                  </Button>
+               </children>
+            </Pane>
+            <Button fx:id="btn_logout" layoutX="541.0" layoutY="3.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="59.0" style="-fx-background-color: transparent;" text="Logout" textFill="BLUE">
                <font>
-                  <Font name="Arial Black" size="28.0" />
-               </font>
-            </Label>
-            <Label layoutX="170.0" layoutY="148.0" prefHeight="86.0" prefWidth="262.0" text="This is temporary to know if the login is working ! ..." wrapText="true">
-               <font>
-                  <Font size="22.0" />
-               </font>
-            </Label>
-            <Button fx:id="btn_logout" layoutX="248.0" layoutY="266.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="107.0" text="Logout">
-               <font>
-                  <Font name="System Bold" size="15.0" />
+                  <Font name="Arial Bold" size="12.0" />
                </font>
             </Button>
+            <Label fx:id="lbl_welcome" layoutX="411.0" layoutY="7.0" prefHeight="15.0" prefWidth="130.0" text="welcome !">
+               <font>
+                  <Font name="Arial Bold" size="12.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </children>
