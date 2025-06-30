@@ -16,12 +16,9 @@ public class MainController implements Initializable {
     @FXML
     private Label lbl_welcome;
     
-    @FXML
-    private Button btn_logout;
-    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // Remove the old event handler setup since we'll use FXML event handlers
+        
     } 
     
     public void setName(String name){
