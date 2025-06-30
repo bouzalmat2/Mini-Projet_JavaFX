@@ -10,7 +10,6 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-
 <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.javafx_mvc.controllers.LoginController">
    <children>
       <AnchorPane prefHeight="400.0" prefWidth="270.0">
@@ -24,6 +23,7 @@
       </AnchorPane>
       <AnchorPane prefHeight="400.0" prefWidth="329.0">
          <children>
+            
             <Label alignment="CENTER" layoutX="131.0" layoutY="31.0" prefHeight="59.0" prefWidth="115.0" text="Login">
                <font>
                   <Font name="Arial Black" size="25.0" />
@@ -39,7 +39,7 @@
                   <Font size="15.0" />
                </font>
             </TextField>
-            <TextField fx:id="tf_password" layoutX="119.0" layoutY="195.0" prefHeight="31.0" prefWidth="192.0" promptText="Entrez votre mot de passe">
+            <TextField fx:id="tf_password" layoutX="119.0" layoutY="195.0" prefHeight="31.0" prefWidth="192.0" promptText="Entez votre mot de passe">
                <font>
                   <Font size="15.0" />
                </font>

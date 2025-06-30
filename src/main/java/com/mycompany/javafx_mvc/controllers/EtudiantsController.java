@@ -1,21 +1,26 @@
-
-
 package com.mycompany.javafx_mvc.controllers;
+
+import java.net.URL;
+import java.util.List;
+import java.util.ResourceBundle;
 
 import com.mycompany.javafx_mvc.dao.EleveDAO;
 import com.mycompany.javafx_mvc.dao.FiliereDAO;
 import com.mycompany.javafx_mvc.models.Eleve;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 
-import java.net.URL;
-import java.util.List;
-import java.util.ResourceBundle;
 
 public class EtudiantsController implements Initializable {
 
@@ -25,6 +30,11 @@ public class EtudiantsController implements Initializable {
     @FXML private TextField txtNom;
     @FXML private TextField txtPrenom;
     @FXML private TableView<Eleve> tableEleves;
+    @FXML private TableColumn<Eleve, String> colCode;
+    @FXML private TableColumn<Eleve, String> colNom;
+    @FXML private TableColumn<Eleve, String> colPrenom;
+    @FXML private TableColumn<Eleve, String> colNiveau;
+    @FXML private TableColumn<Eleve, String> colFiliere;
     
     private FiliereDAO filiereDAO;
     private EleveDAO eleveDAO;
@@ -33,6 +43,27 @@ public class EtudiantsController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         filiereDAO = new FiliereDAO();
         eleveDAO = new EleveDAO();
+        
+        // Setup table columns
+        colCode.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getCode()));
+        colNom.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getNom()));
+        colPrenom.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getPrenom()));
+        colNiveau.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getNiveau()));
+        colFiliere.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getCodeFiliere()));
+        
+        // Setup table selection
+        tableEleves.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                txtCode.setText(newSelection.getCode());
+                txtNom.setText(newSelection.getNom());
+                txtPrenom.setText(newSelection.getPrenom());
+                comboFiliere.setValue(newSelection.getCodeFiliere());
+                
+                // Trigger FiliereChange to populate niveau combo box, then set the niveau
+                FiliereChange(null);
+                comboNiveau.setValue(newSelection.getNiveau());
+            }
+        });
         
         List<String> codesFilieres = filiereDAO.getAllCodesFilieres();
         ObservableList<String> observableFilieres = FXCollections.observableArrayList(codesFilieres);
@@ -45,9 +76,15 @@ public class EtudiantsController implements Initializable {
     private void FiliereChange(ActionEvent event) {
         String selectedFiliere = comboFiliere.getValue();
         if (selectedFiliere != null) {
-            List<String> niveaux = filiereDAO.getNiveauxByFiliere(selectedFiliere);
-            ObservableList<String> observableNiveaux = FXCollections.observableArrayList(niveaux);
-            comboNiveau.setItems(observableNiveaux);
+            // Use predefined levels instead of database levels
+            ObservableList<String> niveaux = FXCollections.observableArrayList(
+                "1er année",
+                "2eme année", 
+                "3eme année",
+                "4eme année",
+                "5eme année"
+            );
+            comboNiveau.setItems(niveaux);
         }
     }
 
@@ -132,6 +169,15 @@ public class EtudiantsController implements Initializable {
         txtPrenom.clear();
         comboFiliere.getSelectionModel().clearSelection();
         comboNiveau.getSelectionModel().clearSelection();
+    }
+
+    @FXML
+    private void retourMain(ActionEvent event) {
+        try {
+            new com.mycompany.javafx_mvc.dao.LoginDAO().changeScene(event, "view/Main.fxml", "Main", null);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void rafraichirTable() {

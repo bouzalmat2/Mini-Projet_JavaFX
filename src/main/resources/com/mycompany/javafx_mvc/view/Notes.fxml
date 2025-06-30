@@ -5,7 +5,41 @@
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.javafx_mvc.controllers.NotesController">
-    
+<AnchorPane id="AnchorPane" prefHeight="650.0" prefWidth="900.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.javafx_mvc.controllers.NotesController">
+    <children>
+        <VBox alignment="TOP_CENTER" 
+              spacing="20" 
+              AnchorPane.topAnchor="20" 
+              AnchorPane.leftAnchor="20" 
+              AnchorPane.rightAnchor="20"
+              AnchorPane.bottomAnchor="20">
+            
+            <!-- Header with Return Button and ENSI Logo -->
+            <HBox alignment="CENTER_LEFT" spacing="20">
+                <Button text="← Retour" onAction="#retourMain" 
+                        style="-fx-background-color: #6c757d; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8 16; -fx-cursor: hand;"/>
+                <ImageView fitHeight="40" fitWidth="40" preserveRatio="true">
+                    <Image url="@../../image/ENSI-logo.png"/>
+                </ImageView>
+                <Label text="Gestion des Notes" 
+                       style="-fx-font-size:24; -fx-font-weight:bold;"/>
+            </HBox>
+            
+            <!-- Content Area -->
+            <VBox spacing="15" style="-fx-background-color: #f8f9fa; -fx-padding: 20; -fx-background-radius: 8;" VBox.vgrow="ALWAYS">
+                <Label text="Saisie des Notes" style="-fx-font-size:18; -fx-font-weight:bold;"/>
+                <Label text="Interface de gestion des notes des étudiants" style="-fx-font-size:14; -fx-text-fill: #666666;"/>
+                
+                <!-- Placeholder for notes management content -->
+                <VBox alignment="CENTER" spacing="10" VBox.vgrow="ALWAYS">
+                    <Label text="📊" style="-fx-font-size: 48px;"/>
+                    <Label text="Gestion des Notes" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+                    <Label text="Interface en cours de développement" style="-fx-font-size: 14px; -fx-text-fill: #666666;"/>
+                </VBox>
+            </VBox>
+        </VBox>
+    </children>
 </AnchorPane>

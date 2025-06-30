@@ -1,11 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.javafx_mvc.controllers.ConsultationController">
-    
+<AnchorPane id="AnchorPane" prefHeight="750.0" prefWidth="1000.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="com.mycompany.javafx_mvc.controllers.ConsultationController">
+    <children>
+        <VBox alignment="TOP_CENTER" spacing="20" AnchorPane.bottomAnchor="20" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20" AnchorPane.topAnchor="20">
+            
+            <!-- Header with Return Button and ENSI Logo -->
+            <HBox alignment="CENTER_LEFT" spacing="20">
+                <Button onAction="#retourMain" style="-fx-background-color: #6c757d; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8 16; -fx-cursor: hand;" text="← Retour" />
+                <ImageView fitHeight="101.0" fitWidth="127.0" preserveRatio="true">
+                    <Image url="@../../../../image/ENSI-logo.png" />
+                </ImageView>
+                <Label style="-fx-font-size:24; -fx-font-weight:bold;" text="Consultation des Résultats" />
+            </HBox>
+            
+            <!-- Content Area -->
+            <VBox spacing="15" style="-fx-background-color: #f8f9fa; -fx-padding: 20; -fx-background-radius: 8;" VBox.vgrow="ALWAYS">
+                <Label style="-fx-font-size:18; -fx-font-weight:bold;" text="Consultation des Notes" />
+                <Label style="-fx-font-size:14; -fx-text-fill: #666666;" text="Consultez les résultats et moyennes des étudiants" />
+                
+                <!-- Placeholder for consultation content -->
+                <VBox alignment="CENTER" spacing="10" VBox.vgrow="ALWAYS">
+                    <Label style="-fx-font-size: 48px;" text="🔍" />
+                    <Label style="-fx-font-size: 20px; -fx-font-weight: bold;" text="Consultation des Résultats" />
+                    <Label style="-fx-font-size: 14px; -fx-text-fill: #666666;" text="Interface en cours de développement" />
+                </VBox>
+            </VBox>
+        </VBox>
+    </children>
 </AnchorPane>

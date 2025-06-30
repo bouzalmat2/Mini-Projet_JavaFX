@@ -1,21 +1,87 @@
-<?xml version="1.0" encoding="UTF-8"?><?import javafx.geometry.Insets?><?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?> 
+<?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 
-
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.javafx_mvc.controllers.EtudiantsController" prefWidth="600"  prefHeight="600" >
+<AnchorPane prefHeight="700" prefWidth="800" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="com.mycompany.javafx_mvc.controllers.EtudiantsController">
     <children>
-        <VBox alignment="TOP_CENTER"  spacing="10" AnchorPane.topAnchor="10" AnchorPane.leftAnchor="10" AnchorPane.rightAnchor="10" >
-            <Label  text=" gestion des Etudiant" style="-fx-font-size:20; -fx-font-weight:bold;"/>
-            <GridPane hgap="10" vgap="10" padding="10">
-             
-              
-        
-    
-    
-    
-    
-    
-    
-    
+        <VBox alignment="TOP_CENTER" spacing="20" AnchorPane.bottomAnchor="20" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20" AnchorPane.topAnchor="20">
+            
+            <!-- Header with Return Button and ENSI Logo -->
+            <HBox alignment="CENTER_LEFT" spacing="20">
+                <Button onAction="#retourMain" style="-fx-background-color: #6c757d; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8 16; -fx-cursor: hand;" text="← Retour" />
+                <ImageView fitHeight="141.0" fitWidth="133.0" preserveRatio="true">
+                    <Image url="@../../../../image/ENSI-logo.png" />
+                </ImageView>
+                <Label style="-fx-font-size:24; -fx-font-weight:bold;" text="Gestion des Étudiants" />
+            </HBox>
+            
+            <!-- Form Section -->
+            <VBox spacing="15" style="-fx-background-color: #f8f9fa; -fx-padding: 20; -fx-background-radius: 8;">
+                <Label style="-fx-font-size:18; -fx-font-weight:bold;" text="Informations de l'Étudiant" />
+                
+                <GridPane hgap="15" vgap="10">
+                    <Label text="Code:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                    <TextField fx:id="txtCode" prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                    
+                    <Label text="Nom:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                    <TextField fx:id="txtNom" prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                    
+                    <Label text="Prénom:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                    <TextField fx:id="txtPrenom" prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                    
+                    <Label text="Filière:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                    <ComboBox fx:id="comboFiliere" onAction="#FiliereChange" prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                    
+                    <Label text="Niveau:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+                    <ComboBox fx:id="comboNiveau" prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+               <columnConstraints>
+                  <ColumnConstraints />
+                  <ColumnConstraints />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints />
+                  <RowConstraints />
+                  <RowConstraints />
+                  <RowConstraints />
+                  <RowConstraints />
+               </rowConstraints>
+                </GridPane>
+                
+                <!-- Buttons -->
+                <HBox alignment="CENTER" spacing="10">
+                    <Button onAction="#ajouterEtudiant" style="-fx-background-color: #28a745; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8 16;" text="Ajouter" />
+                    <Button onAction="#modifierEtudiant" style="-fx-background-color: #ffc107; -fx-text-fill: black; -fx-font-weight: bold; -fx-padding: 8 16;" text="Modifier" />
+                    <Button onAction="#supprimerEtudiant" style="-fx-background-color: #dc3545; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8 16;" text="Supprimer" />
+                    <Button onAction="#nouveauEtudiant" style="-fx-background-color: #17a2b8; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8 16;" text="Nouveau" />
+                </HBox>
+            </VBox>
+            
+            <!-- Table Section -->
+            <VBox spacing="10" VBox.vgrow="ALWAYS">
+                <Label style="-fx-font-size:18; -fx-font-weight:bold;" text="Liste des Étudiants" />
+                <TableView fx:id="tableEleves" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="colCode" prefWidth="127.0" text="Code" />
+                        <TableColumn fx:id="colNom" prefWidth="162.0" text="Nom" />
+                        <TableColumn fx:id="colPrenom" prefWidth="181.0" text="Prénom" />
+                        <TableColumn fx:id="colNiveau" prefWidth="117.0" text="Niveau" />
+                        <TableColumn fx:id="colFiliere" prefWidth="172.0" text="Filière" />
+                    </columns>
+                </TableView>
+            </VBox>
+        </VBox>
     </children>
+</AnchorPane>
