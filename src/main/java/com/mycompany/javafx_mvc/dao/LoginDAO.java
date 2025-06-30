@@ -17,8 +17,10 @@ public class LoginDAO {
         con = Connexion.getConnection();
     }
     
-    public void changeScene(ActionEvent event, String fxmlFile, String title, String name) {
+    
+public void changeScene(ActionEvent event, String fxmlFile, String title, String name) {
         Parent root = null;
+        int width, height;
         
         try {
             if (name != null) {
@@ -32,19 +34,50 @@ public class LoginDAO {
             
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setTitle(title);
-            stage.setScene(new Scene(root, 600, 400));
+            switch (fxmlFile) {
+                case "view/Login.fxml":
+                    width = 600;
+                    height = 400;
+                    break;
+                case "view/Main.fxml":
+                    width = 800;
+                    height = 700;
+                    break;
+                case "view/Etudiants.fxml":
+                    width = 800;
+                    height = 700;
+                    break;
+                case "view/Notes.fxml":
+                    width = 900;
+                    height = 650;
+                    break;
+                case "view/Consultation.fxml":
+                    width = 1000;
+                    height = 750;
+                    break;
+                case "view/Archives.fxml":
+                    width = 850;
+                    height = 600;
+                    break;
+                default:
+                    width = 600;
+                    height = 400;
+                    break;
+            }
+            stage.setScene(new Scene(root, width, height));
             stage.show();
         } catch (IOException ex) {
             System.err.println("Error loading FXML: " + ex.getMessage());
             showAlert("Error", "Failed to load view", Alert.AlertType.ERROR);
-        }
-    }
+   }
+}
+
     
     public void loginUser(ActionEvent event, String username, String password) {
         String sql = "SELECT name, password FROM user WHERE username = ?";
         
         try (PreparedStatement pstmt = con.prepareStatement(sql)) {
-            pstmt.setString(1, username);  // Fixed parameter index (was 2, now 1)
+            pstmt.setString(1, username);  
             
             try (ResultSet rs = pstmt.executeQuery()) {
                 if (!rs.next()) {

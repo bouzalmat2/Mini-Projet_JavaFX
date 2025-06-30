@@ -61,7 +61,10 @@ public class Matiere {
         this.codeModule = codeModule;
     }
 
-   
+   @Override
+    public String toString() {
+        return designation;
+    }
     
     
     

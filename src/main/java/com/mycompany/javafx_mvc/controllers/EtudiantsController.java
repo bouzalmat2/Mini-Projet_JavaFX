@@ -44,14 +44,14 @@ public class EtudiantsController implements Initializable {
         filiereDAO = new FiliereDAO();
         eleveDAO = new EleveDAO();
         
-        // Setup table columns
+      
         colCode.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getCode()));
         colNom.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getNom()));
         colPrenom.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getPrenom()));
         colNiveau.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getNiveau()));
         colFiliere.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getCodeFiliere()));
         
-        // Setup table selection
+        
         tableEleves.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
                 txtCode.setText(newSelection.getCode());
@@ -59,7 +59,7 @@ public class EtudiantsController implements Initializable {
                 txtPrenom.setText(newSelection.getPrenom());
                 comboFiliere.setValue(newSelection.getCodeFiliere());
                 
-                // Trigger FiliereChange to populate niveau combo box, then set the niveau
+               
                 FiliereChange(null);
                 comboNiveau.setValue(newSelection.getNiveau());
             }
@@ -76,7 +76,7 @@ public class EtudiantsController implements Initializable {
     private void FiliereChange(ActionEvent event) {
         String selectedFiliere = comboFiliere.getValue();
         if (selectedFiliere != null) {
-            // Use predefined levels instead of database levels
+           
             ObservableList<String> niveaux = FXCollections.observableArrayList(
                 "1er année",
                 "2eme année", 
@@ -175,8 +175,8 @@ public class EtudiantsController implements Initializable {
     private void retourMain(ActionEvent event) {
         try {
             new com.mycompany.javafx_mvc.dao.LoginDAO().changeScene(event, "view/Main.fxml", "Main", null);
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception ex) {
+            System.out.println("Erreur!!!"+ex.getMessage());
         }
     }
 

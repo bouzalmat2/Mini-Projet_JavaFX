@@ -86,27 +86,39 @@ public class EleveDAO {
     }
         return liste;
     }
+    
+   
+    
+    public boolean existe(String codeEleve) {
+    String sql = "SELECT 1 FROM Eleve WHERE code = ?";
+    try (PreparedStatement ps = con.prepareStatement(sql)) {
+        ps.setString(1, codeEleve);
+        ResultSet rs = ps.executeQuery();
+        return rs.next(); 
+    } catch (SQLException e) {
+        System.out.println("Erreur existe: " + e.getMessage());
+    }
+    return false;
+}
  
-  public Eleve  getEleve_Par_code(String code){
-      String sql ="SLECT * FROM Eleve WHERE code= ?";
-      try(PreparedStatement ps =con.prepareStatement(sql)){
-          ps.setString(1,code);
-          ResultSet RS=ps.executeQuery();
-          if(RS.next()){
-              return new Eleve(
+  public Eleve getEleve_Par_code(String code) {
+    String sql = "SELECT * FROM Eleve WHERE code = ?";
+    try (PreparedStatement ps = con.prepareStatement(sql)) {
+        ps.setString(1, code);
+        ResultSet RS = ps.executeQuery();
+        if (RS.next()) {
+            return new Eleve(
                 RS.getInt("id"),
                 RS.getString("code"),
                 RS.getString("nom"),
                 RS.getString("prenom"),
                 RS.getString("niveau"),
                 RS.getString("code_fil")
-               ); 
-          }
-      
-      }catch(SQLException ex){
-              System.out.println("Erreur!!!"+ex.getMessage());
-      }
-  
-   return null;
-  }
+            );
+        }
+    } catch (SQLException ex) {
+        System.out.println("Erreur!!!" + ex.getMessage());
+    }
+    return null;
+}
 }

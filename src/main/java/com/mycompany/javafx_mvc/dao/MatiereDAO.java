@@ -16,9 +16,9 @@ public class MatiereDAO {
     
     public List<Matiere>  getMatier_Par_Filier_Et_Niveauet(String code_fil,String niveau){
         List<Matiere> liste=new ArrayList<>();
-        String sql = " SELECT *FROM Matier m "+
-            "JOIN Module mo ON  m.code_module=mo.code"+ 
-            "where mo.code_fil=? AND mo.niveau=?";
+        String sql = "SELECT * FROM Matier m " +
+                 "JOIN Module mo ON m.code_module = mo.code " +
+                 "WHERE mo.code_fil = ? AND mo.niveau = ?";
         
         try(PreparedStatement ps =con.prepareStatement(sql))      
         {

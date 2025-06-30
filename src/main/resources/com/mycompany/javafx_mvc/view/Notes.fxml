@@ -1,45 +1,87 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
 
-<AnchorPane id="AnchorPane" prefHeight="650.0" prefWidth="900.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.javafx_mvc.controllers.NotesController">
+<AnchorPane id="AnchorPane" prefHeight="650.0" prefWidth="900.0"
+            style="-fx-background-color: #f5f7fa;"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.mycompany.javafx_mvc.controllers.NotesController">
+
     <children>
-        <VBox alignment="TOP_CENTER" 
-              spacing="20" 
-              AnchorPane.topAnchor="20" 
-              AnchorPane.leftAnchor="20" 
-              AnchorPane.rightAnchor="20"
-              AnchorPane.bottomAnchor="20">
-            
-            <!-- Header with Return Button and ENSI Logo -->
-            <HBox alignment="CENTER_LEFT" spacing="20">
-                <Button text="← Retour" onAction="#retourMain" 
-                        style="-fx-background-color: #6c757d; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8 16; -fx-cursor: hand;"/>
+        <VBox alignment="TOP_CENTER" spacing="20"
+              AnchorPane.topAnchor="20" AnchorPane.leftAnchor="20"
+              AnchorPane.rightAnchor="20" AnchorPane.bottomAnchor="20">
+
+            <!-- Header - Modern with accent color -->
+            <HBox alignment="CENTER_LEFT" spacing="20" style="-fx-background-color: #4a6baf; -fx-background-radius: 8; -fx-padding: 15;">
+                <Button text="← Retour" onAction="#retourMain"
+                        style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8 16; -fx-cursor: hand; -fx-border-color: white; -fx-border-radius: 4;"/>
                 <ImageView fitHeight="40" fitWidth="40" preserveRatio="true">
                     <Image url="@../../image/ENSI-logo.png"/>
                 </ImageView>
-                <Label text="Gestion des Notes" 
-                       style="-fx-font-size:24; -fx-font-weight:bold;"/>
+                <Label text="Gestion des Notes"
+                       style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: white; -fx-font-family: 'Segoe UI';"/>
             </HBox>
-            
-            <!-- Content Area -->
-            <VBox spacing="15" style="-fx-background-color: #f8f9fa; -fx-padding: 20; -fx-background-radius: 8;" VBox.vgrow="ALWAYS">
-                <Label text="Saisie des Notes" style="-fx-font-size:18; -fx-font-weight:bold;"/>
-                <Label text="Interface de gestion des notes des étudiants" style="-fx-font-size:14; -fx-text-fill: #666666;"/>
-                
-                <!-- Placeholder for notes management content -->
-                <VBox alignment="CENTER" spacing="10" VBox.vgrow="ALWAYS">
-                    <Label text="📊" style="-fx-font-size: 48px;"/>
-                    <Label text="Gestion des Notes" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
-                    <Label text="Interface en cours de développement" style="-fx-font-size: 14px; -fx-text-fill: #666666;"/>
+
+            <!-- Content area - Card-like design -->
+            <VBox spacing="15" style="-fx-background-color: white; -fx-padding: 25; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);" 
+                  VBox.vgrow="ALWAYS">
+
+                <VBox spacing="5">
+                    <Label text="Saisie des Notes" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #2c3e50; -fx-font-family: 'Segoe UI';"/>
+                    <Label text="Interface de gestion des notes des étudiants"
+                           style="-fx-font-size: 14px; -fx-text-fill: #7f8c8d; -fx-font-family: 'Segoe UI';"/>
+                    <Separator style="-fx-padding: 5 0 10 0;"/>
                 </VBox>
+
+                <GridPane hgap="15" vgap="15" style="-fx-padding: 10;">
+                    <columnConstraints>
+                        <ColumnConstraints halignment="RIGHT" minWidth="120"/>
+                        <ColumnConstraints minWidth="300" />
+                    </columnConstraints>
+
+                    <!-- Code Eleve -->
+                    <Label text="Code Élève :" style="-fx-text-fill: #34495e; -fx-font-weight: bold;" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                    <TextField fx:id="txtCodeEleve" promptText="Entrez le code de l'élève" 
+                               style="-fx-prompt-text-fill: #bdc3c7; -fx-background-radius: 4; -fx-border-radius: 4; -fx-border-color: #dfe6e9; -fx-padding: 8;"
+                               GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                    <!-- Matiere -->
+                    <Label text="Matière :" style="-fx-text-fill: #34495e; -fx-font-weight: bold;" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                    <ComboBox fx:id="comboMatier" promptText="Choisir la matière" 
+                              style="-fx-background-radius: 4; -fx-border-radius: 4; -fx-border-color: #dfe6e9; -fx-padding: 8;"
+                              GridPane.rowIndex="1" GridPane.columnIndex="1"
+                              onAction="#handleSelectionMatiere"/>
+
+                    <!-- Note -->
+                    <Label text="Note :" style="-fx-text-fill: #34495e; -fx-font-weight: bold;" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                    <TextField fx:id="txtNote" promptText="Entrez la note (0-20)" 
+                               style="-fx-prompt-text-fill: #bdc3c7; -fx-background-radius: 4; -fx-border-radius: 4; -fx-border-color: #dfe6e9; -fx-padding: 8;"
+                               GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                </GridPane>
+
+                <!-- Buttons - Modern flat design -->
+                <HBox spacing="15" alignment="CENTER" style="-fx-padding: 20 0 0 0;">
+                    <Button fx:id="btnNouveau" text="Nouveau" onAction="#handleNouveau" 
+                            style="-fx-pref-width: 120; -fx-background-color: #3498db; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 4; -fx-padding: 8 16; -fx-cursor: hand;"/>
+                    <Button fx:id="btnAjouter" text="Ajouter" onAction="#handleAjouter" 
+                            style="-fx-pref-width: 120; -fx-background-color: #2ecc71; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 4; -fx-padding: 8 16; -fx-cursor: hand;"/>
+                    <Button fx:id="btnModifier" text="Modifier" onAction="#handleModifier" 
+                            style="-fx-pref-width: 120; -fx-background-color: #f39c12; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 4; -fx-padding: 8 16; -fx-cursor: hand;"/>
+                    <Button fx:id="btnSupprimer" text="Supprimer" onAction="#handleSupprimer" 
+                            style="-fx-pref-width: 120; -fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 4; -fx-padding: 8 16; -fx-cursor: hand;"/>
+                    <Button fx:id="btnRechercher" text="Rechercher" onAction="#handleRechercher" 
+                            style="-fx-pref-width: 120; -fx-background-color: #9b59b6; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 4; -fx-padding: 8 16; -fx-cursor: hand;"/>
+                </HBox>
+
             </VBox>
+
         </VBox>
     </children>
+
 </AnchorPane>
