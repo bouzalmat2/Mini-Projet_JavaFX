@@ -1,6 +1,7 @@
 package com.mycompany.javafx_mvc.controllers;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -16,6 +17,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -35,6 +37,12 @@ public class EtudiantsController implements Initializable {
     @FXML private TableColumn<Eleve, String> colPrenom;
     @FXML private TableColumn<Eleve, String> colNiveau;
     @FXML private TableColumn<Eleve, String> colFiliere;
+    @FXML private CheckBox cbCode;
+    @FXML private CheckBox cbNom;
+    @FXML private CheckBox cbPrenom;
+    @FXML private CheckBox cbFiliere;
+    @FXML private CheckBox cbNiveau;
+    @FXML private TextField txtSearch;
     
     private FiliereDAO filiereDAO;
     private EleveDAO eleveDAO;
@@ -44,13 +52,12 @@ public class EtudiantsController implements Initializable {
         filiereDAO = new FiliereDAO();
         eleveDAO = new EleveDAO();
         
-      
+        // Setup table columns
         colCode.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getCode()));
         colNom.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getNom()));
         colPrenom.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getPrenom()));
         colNiveau.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getNiveau()));
         colFiliere.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getCodeFiliere()));
-        
         
         tableEleves.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
@@ -59,7 +66,6 @@ public class EtudiantsController implements Initializable {
                 txtPrenom.setText(newSelection.getPrenom());
                 comboFiliere.setValue(newSelection.getCodeFiliere());
                 
-               
                 FiliereChange(null);
                 comboNiveau.setValue(newSelection.getNiveau());
             }
@@ -76,7 +82,6 @@ public class EtudiantsController implements Initializable {
     private void FiliereChange(ActionEvent event) {
         String selectedFiliere = comboFiliere.getValue();
         if (selectedFiliere != null) {
-           
             ObservableList<String> niveaux = FXCollections.observableArrayList(
                 "1er année",
                 "2eme année", 
@@ -175,9 +180,38 @@ public class EtudiantsController implements Initializable {
     private void retourMain(ActionEvent event) {
         try {
             new com.mycompany.javafx_mvc.dao.LoginDAO().changeScene(event, "view/Main.fxml", "Main", null);
-        } catch (Exception ex) {
-            System.out.println("Erreur!!!"+ex.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+    }
+
+    @FXML
+    private void rechercherEtudiants() {
+        String searchValue = txtSearch.getText().trim();
+        if (searchValue.isEmpty()) {
+            rafraichirTable();
+            return;
+        }
+
+        // If code is checked, ignore other criteria
+        if (cbCode.isSelected()) {
+            cbNom.setSelected(false);
+            cbPrenom.setSelected(false);
+            cbFiliere.setSelected(false);
+            cbNiveau.setSelected(false);
+        }
+
+        List<Eleve> results = new ArrayList<>();
+        for (Eleve e : eleveDAO.getAllEleves()) {
+            boolean match = false;
+            if (cbCode.isSelected() && e.getCode().equalsIgnoreCase(searchValue)) match = true;
+            if (cbNom.isSelected() && e.getNom().toLowerCase().contains(searchValue.toLowerCase())) match = true;
+            if (cbPrenom.isSelected() && e.getPrenom().toLowerCase().contains(searchValue.toLowerCase())) match = true;
+            if (cbFiliere.isSelected() && e.getCodeFiliere().toLowerCase().contains(searchValue.toLowerCase())) match = true;
+            if (cbNiveau.isSelected() && e.getNiveau().toLowerCase().contains(searchValue.toLowerCase())) match = true;
+            if (match) results.add(e);
+        }
+        tableEleves.setItems(FXCollections.observableArrayList(results));
     }
 
     private void rafraichirTable() {
