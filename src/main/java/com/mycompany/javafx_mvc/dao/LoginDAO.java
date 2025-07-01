@@ -45,7 +45,7 @@ public void changeScene(ActionEvent event, String fxmlFile, String title, String
                     break;
                 case "view/Etudiants.fxml":
                     width = 800;
-                    height = 700;
+                    height = 800;
                     break;
                 case "view/Notes.fxml":
                     width = 900;

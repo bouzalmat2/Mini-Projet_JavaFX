@@ -6,6 +6,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 
@@ -17,6 +18,14 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("view/Login"), 600, 400);
         stage.setTitle("Login - Student Grade Management System");
+        
+        try {
+            Image icon = new Image(getClass().getResourceAsStream("/image/ENSI-logo.png"));
+            stage.getIcons().add(icon);
+        } catch (Exception e) {
+            System.err.println("Could not load application icon: " + e.getMessage());
+        }
+        
         stage.setScene(scene);
         stage.show();
     }
