@@ -1,14 +1,21 @@
 package com.mycompany.javafx_mvc.dao;
 
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import com.mycompany.javafx_mvc.controllers.MainController;
 import com.mycompany.javafx_mvc.db.Connexion;
-import java.io.*;
-import java.sql.*;
-import javafx.event.*;
-import javafx.fxml.*;
-import javafx.scene.*;
+
+import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.stage.*;
+import javafx.stage.Stage;
 
 public class LoginDAO {
     private final Connection con;
@@ -40,7 +47,7 @@ public void changeScene(ActionEvent event, String fxmlFile, String title, String
                     height = 400;
                     break;
                 case "view/Main.fxml":
-                    width = 800;
+                    width = 1000;
                     height = 700;
                     break;
                 case "view/Etudiants.fxml":
@@ -49,7 +56,7 @@ public void changeScene(ActionEvent event, String fxmlFile, String title, String
                     break;
                 case "view/Notes.fxml":
                     width = 900;
-                    height = 650;
+                    height = 800;
                     break;
                 case "view/Consultation.fxml":
                     width = 1000;

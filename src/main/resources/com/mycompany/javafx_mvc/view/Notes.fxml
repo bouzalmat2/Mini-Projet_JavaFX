@@ -79,6 +79,14 @@
                             style="-fx-pref-width: 120; -fx-background-color: #9b59b6; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 4; -fx-padding: 8 16; -fx-cursor: hand;"/>
                 </HBox>
 
+                <!-- TableView for displaying all matieres and their grades -->
+                <TableView fx:id="tableMatieres" prefHeight="200" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="colDesignation" text="Matière" prefWidth="250" />
+                        <TableColumn fx:id="colNote" text="Note" prefWidth="100" />
+                    </columns>
+                </TableView>
+
             </VBox>
 
         </VBox>

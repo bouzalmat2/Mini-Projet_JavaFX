@@ -65,8 +65,6 @@ public class EtudiantsController implements Initializable {
                 txtNom.setText(newSelection.getNom());
                 txtPrenom.setText(newSelection.getPrenom());
                 comboFiliere.setValue(newSelection.getCodeFiliere());
-                
-                FiliereChange(null);
                 comboNiveau.setValue(newSelection.getNiveau());
             }
         });
@@ -177,7 +175,7 @@ public class EtudiantsController implements Initializable {
     }
 
     @FXML
-    private void retourMain(ActionEvent event) {
+    public void retourMain(ActionEvent event) {
         try {
             new com.mycompany.javafx_mvc.dao.LoginDAO().changeScene(event, "view/Main.fxml", "Main", null);
         } catch (Exception e) {

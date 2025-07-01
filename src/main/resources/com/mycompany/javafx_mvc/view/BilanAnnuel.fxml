@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<AnchorPane prefHeight="500" prefWidth="800" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.javafx_mvc.controllers.BilanAnnuelController">
+    <children>
+        <VBox alignment="TOP_CENTER" spacing="20" AnchorPane.bottomAnchor="20" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20" AnchorPane.topAnchor="20">
+            <HBox alignment="CENTER_LEFT" spacing="20">
+                <Button onAction="#retourMain" style="-fx-background-color: #6c757d; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8 16; -fx-cursor: hand;" text="← Retour" />
+                <Label style="-fx-font-size:24; -fx-font-weight:bold;" text="Bilan Annuel" />
+            </HBox>
+            <GridPane hgap="15" vgap="10" style="-fx-padding: 10;">
+                <Label text="Filière" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+                <ComboBox fx:id="comboFiliere" promptText="Choisir la filière" GridPane.rowIndex="0" GridPane.columnIndex="1" />
+                <Label text="Niveau" GridPane.rowIndex="0" GridPane.columnIndex="2" />
+                <ComboBox fx:id="comboNiveau" promptText="Choisir le niveau" GridPane.rowIndex="0" GridPane.columnIndex="3" />
+                <Label text="Etudiant" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+                <ComboBox fx:id="comboEtudiant" promptText="Choisir l'étudiant" GridPane.rowIndex="1" GridPane.columnIndex="1" />
+                <Button fx:id="btnRechercher" text="Rechercher" onAction="#handleRechercher" GridPane.rowIndex="1" GridPane.columnIndex="3" style="-fx-background-color: #ffc107; -fx-font-weight: bold;" />
+            </GridPane>
+            <TableView fx:id="tableBilan" prefHeight="250" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="colCodeMatiere" text="Code Matière" prefWidth="120" />
+                    <TableColumn fx:id="colDesignation" text="Désignation" prefWidth="200" />
+                    <TableColumn fx:id="colSemestre" text="Semestre" prefWidth="100" />
+                    <TableColumn fx:id="colNote" text="Note" prefWidth="100" />
+                </columns>
+            </TableView>
+            <HBox alignment="CENTER_LEFT" spacing="10" style="-fx-padding: 10 0 0 0;">
+                <Label text="Moyenne annuelle" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+                <TextField fx:id="txtMoyenneAnnuelle" editable="false" style="-fx-font-size: 16px; -fx-background-color: #e9ecef;" />
+            </HBox>
+        </VBox>
+    </children>
+</AnchorPane> 

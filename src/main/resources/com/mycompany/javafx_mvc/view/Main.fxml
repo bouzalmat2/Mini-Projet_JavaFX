@@ -30,25 +30,25 @@
                 <VBox alignment="CENTER" spacing="10" style="-fx-background-color: white; -fx-border-color: #e0e0e0; -fx-border-width: 1; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 20; -fx-min-width: 150; -fx-min-height: 120;">
                     <Label style="-fx-font-size: 32px;" text="👥" />
                     <Label style="-fx-font-size: 16px; -fx-text-fill: #666666;" text="Étudiants" />
-                    <Label style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #2c2c2c;" text="0" />
+                    <Label style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #2c2c2c;" fx:id="lbl_students" text="0" />
                 </VBox>
                 
                 <VBox alignment="CENTER" spacing="10" style="-fx-background-color: white; -fx-border-color: #e0e0e0; -fx-border-width: 1; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 20; -fx-min-width: 150; -fx-min-height: 120;">
                     <Label style="-fx-font-size: 32px;" text="📚" />
                     <Label style="-fx-font-size: 16px; -fx-text-fill: #666666;" text="Matières" />
-                    <Label style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #2c2c2c;" text="0" />
+                    <Label style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #2c2c2c;" fx:id="lbl_matieres" text="0" />
                 </VBox>
                 
                 <VBox alignment="CENTER" spacing="10" style="-fx-background-color: white; -fx-border-color: #e0e0e0; -fx-border-width: 1; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 20; -fx-min-width: 150; -fx-min-height: 120;">
                     <Label style="-fx-font-size: 32px;" text="📊" />
                     <Label style="-fx-font-size: 16px; -fx-text-fill: #666666;" text="Notes" />
-                    <Label style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #2c2c2c;" text="0" />
+                    <Label style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #2c2c2c;" fx:id="lbl_notes" text="0" />
                 </VBox>
                 
                 <VBox alignment="CENTER" spacing="10" style="-fx-background-color: white; -fx-border-color: #e0e0e0; -fx-border-width: 1; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 20; -fx-min-width: 150; -fx-min-height: 120;">
                     <Label style="-fx-font-size: 32px;" text="🎓" />
                     <Label style="-fx-font-size: 16px; -fx-text-fill: #666666;" text="Filières" />
-                    <Label style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #2c2c2c;" text="0" />
+                    <Label style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #2c2c2c;" fx:id="lbl_filieres" text="0" />
                 </VBox>
             </HBox>
             
@@ -60,6 +60,7 @@
                     <Button onAction="#openNotes" style="-fx-background-color: #17a2b8; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 12 20; -fx-cursor: hand; -fx-min-width: 180;" text="📊 Gestion des Notes" />
                     <Button onAction="#openConsultation" style="-fx-background-color: #ffc107; -fx-text-fill: black; -fx-font-weight: bold; -fx-padding: 12 20; -fx-cursor: hand; -fx-min-width: 180;" text="🔍 Consultation" />
                     <Button onAction="#openArchives" style="-fx-background-color: #6c757d; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 12 20; -fx-cursor: hand; -fx-min-width: 180;" text="📁 Archives" />
+                    <Button onAction="#handleBilanAnnuel" style="-fx-background-color: #007bff; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 12 20; -fx-cursor: hand; -fx-min-width: 180;" text="📅 Bilan Annuel" />
                 </HBox>
             </VBox>
             

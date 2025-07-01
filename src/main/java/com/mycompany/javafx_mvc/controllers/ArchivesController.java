@@ -6,6 +6,9 @@ package com.mycompany.javafx_mvc.controllers;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
 /**
@@ -23,4 +26,12 @@ public class ArchivesController implements Initializable {
         // TODO
     }    
     
+    @FXML
+    public void retourMain(ActionEvent event) {
+        try {
+            new com.mycompany.javafx_mvc.dao.LoginDAO().changeScene(event, "view/Main.fxml", "Main", null);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

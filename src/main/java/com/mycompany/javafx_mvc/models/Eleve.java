@@ -76,6 +76,11 @@ public class Eleve {
         this.codeFiliere = codeFiliere;
     }
     
+    @Override
+    public String toString() {
+        return code + " - " + nom + " " + prenom;
+    }
+    
     
     
     
