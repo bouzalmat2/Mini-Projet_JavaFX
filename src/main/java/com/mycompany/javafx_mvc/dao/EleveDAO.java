@@ -1,8 +1,15 @@
 package com.mycompany.javafx_mvc.dao;
-import com.mycompany.javafx_mvc.models.Eleve;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
 import com.mycompany.javafx_mvc.db.Connexion;
-import java.util.*;
-import java.sql.*;
+import com.mycompany.javafx_mvc.models.Eleve;
 
 
 public class EleveDAO {
@@ -48,13 +55,17 @@ public class EleveDAO {
     
     
     public boolean supprimerEleve(String code){
-     
-        try(CallableStatement CS=con.prepareCall("{call supprimer_eleve(?)}")){
-            CS.setString(1,code);
-            
-            return CS.executeUpdate()>0;
-        }catch(SQLException ex){
-            System.out.println("Erreur supprission:"+ex.getMessage());
+        try {
+            try (PreparedStatement ps = con.prepareStatement("DELETE FROM notes WHERE code_eleve = ?")) {
+                ps.setString(1, code);
+                ps.executeUpdate();
+            }
+            try (CallableStatement CS = con.prepareCall("{call supprimer_eleve(?)}")) {
+                CS.setString(1, code);
+                return CS.executeUpdate() > 0;
+            }
+        } catch(SQLException ex){
+            System.out.println("Erreur supprission:" + ex.getMessage());
         }
         return false;
     }

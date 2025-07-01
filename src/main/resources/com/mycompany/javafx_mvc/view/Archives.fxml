@@ -1,44 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="850.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.javafx_mvc.controllers.ArchivesController">
+<AnchorPane prefHeight="650.0" prefWidth="900.0" style="-fx-background-color: #f5f7fa;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="com.mycompany.javafx_mvc.controllers.ArchivesController">
     <children>
-        <VBox alignment="TOP_CENTER" 
-              spacing="20" 
-              AnchorPane.topAnchor="20" 
-              AnchorPane.leftAnchor="20" 
-              AnchorPane.rightAnchor="20"
-              AnchorPane.bottomAnchor="20">
-            
-            <!-- Header with Return Button and ENSI Logo -->
-            <HBox alignment="CENTER_LEFT" spacing="20">
-                <Button text="← Retour" onAction="#retourMain" 
-                        style="-fx-background-color: #6c757d; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8 16; -fx-cursor: hand;"/>
-                <ImageView fitHeight="40" fitWidth="40" preserveRatio="true">
-                    <Image url="@../../image/ENSI-logo.png"/>
+        <VBox alignment="TOP_CENTER" spacing="20" AnchorPane.bottomAnchor="20" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20" AnchorPane.topAnchor="20">
+
+            <HBox alignment="CENTER_LEFT" spacing="20" style="-fx-background-color: #4a6baf; -fx-background-radius: 8; -fx-padding: 15;">
+                <Button onAction="#retourMain" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8 16; -fx-cursor: hand; -fx-border-color: white; -fx-border-radius: 4;" text="← Retour" />
+                <ImageView fitHeight="64.0" fitWidth="102.0" preserveRatio="true">
+                    <Image url="@../../../../image/ENSI-logo-copy.png" />
                 </ImageView>
-                <Label text="Archives" 
-                       style="-fx-font-size:24; -fx-font-weight:bold;"/>
+                <Label style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: white; -fx-font-family: 'Segoe UI';" text="Archives des Étudiants Supprimés" />
             </HBox>
-            
-            <!-- Content Area -->
-            <VBox spacing="15" style="-fx-background-color: #f8f9fa; -fx-padding: 20; -fx-background-radius: 8;" VBox.vgrow="ALWAYS">
-                <Label text="Gestion des Archives" style="-fx-font-size:18; -fx-font-weight:bold;"/>
-                <Label text="Consultez et gérez les archives des étudiants" style="-fx-font-size:14; -fx-text-fill: #666666;"/>
-                
-                <!-- Placeholder for archives content -->
-                <VBox alignment="CENTER" spacing="10" VBox.vgrow="ALWAYS">
-                    <Label text="📁" style="-fx-font-size: 48px;"/>
-                    <Label text="Archives" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
-                    <Label text="Interface en cours de développement" style="-fx-font-size: 14px; -fx-text-fill: #666666;"/>
-                </VBox>
+
+            <VBox spacing="15" style="-fx-background-color: white; -fx-padding: 25; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);" VBox.vgrow="ALWAYS">
+
+                <Label style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #2c3e50; -fx-font-family: 'Segoe UI';" text="Liste des étudiants archivés" />
+                <TableView fx:id="tableArchives" prefHeight="350" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="colCode" prefWidth="100" text="Code" />
+                        <TableColumn fx:id="colNom" prefWidth="150" text="Nom" />
+                        <TableColumn fx:id="colPrenom" prefWidth="150" text="Prénom" />
+                        <TableColumn fx:id="colNiveau" prefWidth="100" text="Niveau" />
+                        <TableColumn fx:id="colFiliere" prefWidth="100" text="Filière" />
+                        <TableColumn fx:id="colDateSuppression" prefWidth="180" text="Date Suppression" />
+                    </columns>
+                </TableView>
+
+                <HBox alignment="CENTER_RIGHT" spacing="15">
+                    <Button fx:id="btnRestaurer" onAction="#handleRestaurer" style="-fx-background-color: #28a745; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 4; -fx-padding: 8 16; -fx-cursor: hand;" text="Restaurer la sélection" />
+                    <Button fx:id="btnExporterPDF" onAction="#handleExporterPDF" style="-fx-background-color: #007bff; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 4; -fx-padding: 8 16; -fx-cursor: hand;" text="Exporter en PDF" />
+                </HBox>
             </VBox>
         </VBox>
     </children>

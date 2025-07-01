@@ -26,6 +26,11 @@
         <artifactId>mysql-connector-java</artifactId>
         <version>8.0.33</version>
       </dependency>
+        <dependency>
+            <groupId>com.itextpdf</groupId>
+            <artifactId>itextpdf</artifactId>
+            <version>5.5.13.3</version>
+        </dependency>
     </dependencies>
     
     <build>
@@ -35,7 +40,7 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.0</version>
                 <configuration>
-                    <release>11</release>
+                    <release>17</release>
                     <mainClass>com.mycompany.javafx_mvc.App</mainClass>
                 </configuration>
             </plugin>

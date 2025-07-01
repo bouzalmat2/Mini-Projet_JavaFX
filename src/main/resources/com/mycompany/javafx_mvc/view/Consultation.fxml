@@ -1,9 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<VBox xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/13" fx:controller="com.mycompany.javafx_mvc.controllers.ConsultationController" alignment="CENTER" spacing="20">
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="650.0" prefWidth="900.0" style="-fx-background-color: #f5f7fa;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="com.mycompany.javafx_mvc.controllers.ConsultationController">
     <children>
-        <Label text="Consultation Test Minimal FXML" />
+        <VBox alignment="TOP_CENTER" spacing="20" AnchorPane.bottomAnchor="20" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20" AnchorPane.topAnchor="20">
+
+            <HBox alignment="CENTER_LEFT" spacing="20" style="-fx-background-color: #4a6baf; -fx-background-radius: 8; -fx-padding: 15;">
+                <Button onAction="#retourMain" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8 16; -fx-cursor: hand; -fx-border-color: white; -fx-border-radius: 4;" text="← Retour" />
+            <ImageView fitHeight="53.0" fitWidth="109.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../image/ENSI-logo-copy.png" />
+               </image>
+            </ImageView>
+                <Label style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: white; -fx-font-family: 'Segoe UI';" text="Consultation des Notes" />
+            </HBox>
+
+            <VBox spacing="15" style="-fx-background-color: white; -fx-padding: 25; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2;" VBox.vgrow="ALWAYS">
+
+                <VBox spacing="5">
+                    <Label style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #2c3e50; -fx-font-family: 'Segoe UI';" text="Recherche des Notes" />
+                    <Label style="-fx-font-size: 14px; -fx-text-fill: #7f8c8d; -fx-font-family: 'Segoe UI';" text="Consultez les notes des étudiants par filière, niveau et matière." />
+                    <Separator style="-fx-padding: 5 0 10 0;" />
+                </VBox>
+
+                <HBox alignment="CENTER_LEFT" spacing="15" style="-fx-padding: 10 0 10 0;">
+                    <Label style="-fx-text-fill: #34495e; -fx-font-weight: bold;" text="Filière :" />
+                    <ComboBox fx:id="comboFiliere" prefWidth="120" promptText="Choisir la filière" style="-fx-background-radius: 4; -fx-border-radius: 4; -fx-border-color: #dfe6e9; -fx-padding: 8;" />
+                    <Label style="-fx-text-fill: #34495e; -fx-font-weight: bold;" text="Niveau :" />
+                    <ComboBox fx:id="comboNiveau" prefWidth="120" promptText="Choisir le niveau" style="-fx-background-radius: 4; -fx-border-radius: 4; -fx-border-color: #dfe6e9; -fx-padding: 8;" />
+                    <Label style="-fx-text-fill: #34495e; -fx-font-weight: bold;" text="Matière :" />
+                    <ComboBox fx:id="comboMatiere" prefWidth="150" promptText="Choisir la matière" style="-fx-background-radius: 4; -fx-border-radius: 4; -fx-border-color: #dfe6e9; -fx-padding: 8;" />
+                    <Button onAction="#handleRechercher" style="-fx-background-color: #4a6baf; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 4; -fx-padding: 8 16; -fx-cursor: hand;" text="Rechercher" />
+                </HBox>
+
+                <TableView fx:id="tableNotes" prefHeight="250" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="colCode" prefWidth="100" text="Code" />
+                        <TableColumn fx:id="colNom" prefWidth="150" text="Nom" />
+                        <TableColumn fx:id="colPrenom" prefWidth="150" text="Prénom" />
+                        <TableColumn fx:id="colNote" prefWidth="100" text="Note" />
+                    </columns>
+                </TableView>
+
+                <HBox alignment="CENTER_RIGHT" spacing="10">
+                    <Label style="-fx-text-fill: #34495e; -fx-font-weight: bold;" text="Moyenne de la classe :" />
+                    <TextField fx:id="txtMoyenneClasse" editable="false" prefWidth="80" style="-fx-background-radius: 4; -fx-border-radius: 4; -fx-border-color: #dfe6e9; -fx-padding: 8;" />
+                </HBox>
+            </VBox>
+        </VBox>
     </children>
-</VBox>
+</AnchorPane>

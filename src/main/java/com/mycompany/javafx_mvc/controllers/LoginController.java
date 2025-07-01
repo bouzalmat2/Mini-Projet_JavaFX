@@ -1,12 +1,17 @@
 package com.mycompany.javafx_mvc.controllers;
 
-import com.mycompany.javafx_mvc.dao.LoginDAO;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import com.mycompany.javafx_mvc.dao.LoginDAO;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.fxml.*;
-import javafx.scene.control.*;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 
 public class LoginController implements Initializable {
 
@@ -33,7 +38,6 @@ public class LoginController implements Initializable {
                 System.out.println("Username: " + tf_username.getText());
                 System.out.println("Password: " + tf_password.getText());
                 
-                // Create LoginDAO instance instead of static call
                 new LoginDAO().loginUser(event, tf_username.getText(), tf_password.getText());
             }
         });

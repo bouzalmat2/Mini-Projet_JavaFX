@@ -25,6 +25,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class BilanAnnuelController implements Initializable {
+    
     @FXML private ComboBox<String> comboFiliere;
     @FXML private ComboBox<String> comboNiveau;
     @FXML private ComboBox<Eleve> comboEtudiant;

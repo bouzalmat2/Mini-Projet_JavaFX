@@ -7,6 +7,7 @@ import java.util.function.UnaryOperator;
 
 import com.mycompany.javafx_mvc.dao.EleveDAO;
 import com.mycompany.javafx_mvc.dao.MatiereDAO;
+import com.mycompany.javafx_mvc.dao.MoyenneDAO;
 import com.mycompany.javafx_mvc.dao.NoteDAO;
 import com.mycompany.javafx_mvc.models.Eleve;
 import com.mycompany.javafx_mvc.models.Matiere;
@@ -134,7 +135,11 @@ public class NotesController implements Initializable {
         Note n = new Note(code, matiere.getCode(), note);
         boolean success = noteDAO.ajouterNote(n);
         refreshTableForStudent(code);
-        if (!success) showAlert("Erreur lors de l'ajout de la note.");
+        if (!success) {
+            showAlert("Erreur lors de l'ajout de la note.");
+        } else {
+            checkAndUpdateMoyenne(code);
+        }
     }
 
     @FXML
@@ -166,7 +171,10 @@ public class NotesController implements Initializable {
         Note n = new Note(code, matiere.getCode(), note);
         boolean success = noteDAO.modifier(n);
         refreshTableForStudent(code);
-        if (success) showInfo("Note modifiee.");
+        if (success) {
+            showInfo("Note modifiee.");
+            checkAndUpdateMoyenne(code);
+        }
         else showAlert("Echec de la modification. Vérifiez la base de données.");
     }
 
@@ -294,6 +302,32 @@ public class NotesController implements Initializable {
             tableData.add(new MatiereNoteRow(matiere.getDesignation(), noteStr));
         }
         tableMatieres.setItems(tableData);
+    }
+
+    private void checkAndUpdateMoyenne(String codeEleve) {
+        Eleve eleve = eleveDAO.getEleve_Par_code(codeEleve);
+        if (eleve == null) return;
+        List<Matiere> matieres = matiereDAO.getMatier_Par_Filier_Et_Niveauet(eleve.getCodeFiliere(), eleve.getNiveau());
+        double total = 0;
+        int count = 0;
+        for (Matiere matiere : matieres) {
+            List<Note> notes = noteDAO.getNotesParEleve(codeEleve, matiere.getCode());
+            if (notes.isEmpty() || notes.get(0).getNote() == -1.0) {
+                return; // Not all notes entered
+            }
+            total += notes.get(0).getNote();
+            count++;
+        }
+        if (count == 0) return;
+        double moyenne = total / count;
+        MoyenneDAO moyenneDAO = new MoyenneDAO();
+        com.mycompany.javafx_mvc.models.Moyenne m = new com.mycompany.javafx_mvc.models.Moyenne(0, codeEleve, eleve.getCodeFiliere(), eleve.getNiveau(), moyenne);
+        moyenneDAO.enregistrerMoyenne(m);
+        if (moyenne >= 10.0) {
+            showInfo("Moyenne annuelle: " + String.format("%.2f", moyenne) + " (Admis)");
+        } else {
+            showInfo("Moyenne annuelle: " + String.format("%.2f", moyenne) + " (Ajourné)");
+        }
     }
 
     public static class MatiereNoteRow {

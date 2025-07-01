@@ -1,3 +1,4 @@
+// This file has been renamed to module-info.java.bak to disable Java modules for compatibility with non-modular libraries like iTextPDF.
 module com.mycompany.javafx_mvc {
     requires javafx.controls;
     requires javafx.fxml;

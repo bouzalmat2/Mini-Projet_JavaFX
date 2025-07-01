@@ -33,15 +33,14 @@ public class MainController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // Update statistics
         EleveDAO eleveDAO = new EleveDAO();
         FiliereDAO filiereDAO = new FiliereDAO();
         MatiereDAO matiereDAO = new MatiereDAO();
         NoteDAO noteDAO = new NoteDAO();
         lbl_students.setText(String.valueOf(eleveDAO.getAllEleves().size()));
         lbl_filieres.setText(String.valueOf(filiereDAO.getAllFilieres().size()));
-        lbl_matieres.setText(String.valueOf(matiereDAO.getMatier_Par_Filier_Et_Niveauet("%", "%").size())); // fallback: count all matieres
-        lbl_notes.setText(String.valueOf(noteDAO.getNotesParEleve("%", "%").size())); // fallback: count all notes
+        lbl_matieres.setText(String.valueOf(matiereDAO.getMatier_Par_Filier_Et_Niveauet("%", "%").size()));
+        lbl_notes.setText(String.valueOf(noteDAO.getNotesParEleve("%", "%").size()));
     } 
     
     public void setName(String name){

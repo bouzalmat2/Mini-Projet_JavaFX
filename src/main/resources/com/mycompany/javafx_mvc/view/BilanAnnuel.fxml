@@ -1,35 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<AnchorPane prefHeight="500" prefWidth="800" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.javafx_mvc.controllers.BilanAnnuelController">
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="500" prefWidth="800" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="com.mycompany.javafx_mvc.controllers.BilanAnnuelController">
     <children>
         <VBox alignment="TOP_CENTER" spacing="20" AnchorPane.bottomAnchor="20" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20" AnchorPane.topAnchor="20">
             <HBox alignment="CENTER_LEFT" spacing="20">
                 <Button onAction="#retourMain" style="-fx-background-color: #6c757d; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8 16; -fx-cursor: hand;" text="← Retour" />
+            <ImageView fitHeight="58.0" fitWidth="115.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../image/ENSI-logo.png" />
+               </image>
+            </ImageView>
                 <Label style="-fx-font-size:24; -fx-font-weight:bold;" text="Bilan Annuel" />
             </HBox>
-            <GridPane hgap="15" vgap="10" style="-fx-padding: 10;">
-                <Label text="Filière" GridPane.rowIndex="0" GridPane.columnIndex="0" />
-                <ComboBox fx:id="comboFiliere" promptText="Choisir la filière" GridPane.rowIndex="0" GridPane.columnIndex="1" />
-                <Label text="Niveau" GridPane.rowIndex="0" GridPane.columnIndex="2" />
-                <ComboBox fx:id="comboNiveau" promptText="Choisir le niveau" GridPane.rowIndex="0" GridPane.columnIndex="3" />
-                <Label text="Etudiant" GridPane.rowIndex="1" GridPane.columnIndex="0" />
-                <ComboBox fx:id="comboEtudiant" promptText="Choisir l'étudiant" GridPane.rowIndex="1" GridPane.columnIndex="1" />
-                <Button fx:id="btnRechercher" text="Rechercher" onAction="#handleRechercher" GridPane.rowIndex="1" GridPane.columnIndex="3" style="-fx-background-color: #ffc107; -fx-font-weight: bold;" />
+            <GridPane hgap="15" style="-fx-padding: 10;" vgap="10">
+                <Label text="Filière" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                <ComboBox fx:id="comboFiliere" promptText="Choisir la filière" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                <Label text="Niveau" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+                <ComboBox fx:id="comboNiveau" promptText="Choisir le niveau" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+                <Label text="Etudiant" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                <ComboBox fx:id="comboEtudiant" promptText="Choisir l'étudiant" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <Button fx:id="btnRechercher" onAction="#handleRechercher" style="-fx-background-color: #ffc107; -fx-font-weight: bold;" text="Rechercher" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <columnConstraints>
+               <ColumnConstraints />
+               <ColumnConstraints />
+               <ColumnConstraints />
+               <ColumnConstraints />
+            </columnConstraints>
+            <rowConstraints>
+               <RowConstraints />
+               <RowConstraints />
+            </rowConstraints>
             </GridPane>
             <TableView fx:id="tableBilan" prefHeight="250" VBox.vgrow="ALWAYS">
                 <columns>
-                    <TableColumn fx:id="colCodeMatiere" text="Code Matière" prefWidth="120" />
-                    <TableColumn fx:id="colDesignation" text="Désignation" prefWidth="200" />
-                    <TableColumn fx:id="colSemestre" text="Semestre" prefWidth="100" />
-                    <TableColumn fx:id="colNote" text="Note" prefWidth="100" />
+                    <TableColumn fx:id="colCodeMatiere" prefWidth="120" text="Code Matière" />
+                    <TableColumn fx:id="colDesignation" prefWidth="200" text="Désignation" />
+                    <TableColumn fx:id="colSemestre" prefWidth="100" text="Semestre" />
+                    <TableColumn fx:id="colNote" prefWidth="100" text="Note" />
                 </columns>
             </TableView>
             <HBox alignment="CENTER_LEFT" spacing="10" style="-fx-padding: 10 0 0 0;">
-                <Label text="Moyenne annuelle" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+                <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Moyenne annuelle" />
                 <TextField fx:id="txtMoyenneAnnuelle" editable="false" style="-fx-font-size: 16px; -fx-background-color: #e9ecef;" />
             </HBox>
         </VBox>
     </children>
-</AnchorPane> 
+</AnchorPane>

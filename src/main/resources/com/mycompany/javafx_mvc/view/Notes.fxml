@@ -1,89 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" prefHeight="650.0" prefWidth="900.0"
-            style="-fx-background-color: #f5f7fa;"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.mycompany.javafx_mvc.controllers.NotesController">
+<AnchorPane id="AnchorPane" prefHeight="650.0" prefWidth="900.0" style="-fx-background-color: #f5f7fa;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.javafx_mvc.controllers.NotesController">
 
     <children>
-        <VBox alignment="TOP_CENTER" spacing="20"
-              AnchorPane.topAnchor="20" AnchorPane.leftAnchor="20"
-              AnchorPane.rightAnchor="20" AnchorPane.bottomAnchor="20">
+        <VBox alignment="TOP_CENTER" spacing="20" AnchorPane.bottomAnchor="20" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20" AnchorPane.topAnchor="20">
 
             <!-- Header - Modern with accent color -->
             <HBox alignment="CENTER_LEFT" spacing="20" style="-fx-background-color: #4a6baf; -fx-background-radius: 8; -fx-padding: 15;">
-                <Button text="← Retour" onAction="#retourMain"
-                        style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8 16; -fx-cursor: hand; -fx-border-color: white; -fx-border-radius: 4;"/>
-                <ImageView fitHeight="40" fitWidth="40" preserveRatio="true">
-                    <Image url="@../../image/ENSI-logo.png"/>
+                <Button onAction="#retourMain" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8 16; -fx-cursor: hand; -fx-border-color: white; -fx-border-radius: 4;" text="← Retour" />
+                <ImageView fitHeight="55.0" fitWidth="100.0" preserveRatio="true">
+                    <Image url="@../../../../image/ENSI-logo-copy.png" />
                 </ImageView>
-                <Label text="Gestion des Notes"
-                       style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: white; -fx-font-family: 'Segoe UI';"/>
+                <Label style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: white; -fx-font-family: 'Segoe UI';" text="Gestion des Notes" />
             </HBox>
 
             <!-- Content area - Card-like design -->
-            <VBox spacing="15" style="-fx-background-color: white; -fx-padding: 25; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);" 
-                  VBox.vgrow="ALWAYS">
+            <VBox spacing="15" style="-fx-background-color: white; -fx-padding: 25; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);" VBox.vgrow="ALWAYS">
 
                 <VBox spacing="5">
-                    <Label text="Saisie des Notes" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #2c3e50; -fx-font-family: 'Segoe UI';"/>
-                    <Label text="Interface de gestion des notes des étudiants"
-                           style="-fx-font-size: 14px; -fx-text-fill: #7f8c8d; -fx-font-family: 'Segoe UI';"/>
-                    <Separator style="-fx-padding: 5 0 10 0;"/>
+                    <Label style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #2c3e50; -fx-font-family: 'Segoe UI';" text="Saisie des Notes" />
+                    <Label style="-fx-font-size: 14px; -fx-text-fill: #7f8c8d; -fx-font-family: 'Segoe UI';" text="Interface de gestion des notes des étudiants" />
+                    <Separator style="-fx-padding: 5 0 10 0;" />
                 </VBox>
 
-                <GridPane hgap="15" vgap="15" style="-fx-padding: 10;">
+                <GridPane hgap="15" style="-fx-padding: 10;" vgap="15">
                     <columnConstraints>
-                        <ColumnConstraints halignment="RIGHT" minWidth="120"/>
+                        <ColumnConstraints halignment="RIGHT" minWidth="120" />
                         <ColumnConstraints minWidth="300" />
                     </columnConstraints>
 
                     <!-- Code Eleve -->
-                    <Label text="Code Élève :" style="-fx-text-fill: #34495e; -fx-font-weight: bold;" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-                    <TextField fx:id="txtCodeEleve" promptText="Entrez le code de l'élève" 
-                               style="-fx-prompt-text-fill: #bdc3c7; -fx-background-radius: 4; -fx-border-radius: 4; -fx-border-color: #dfe6e9; -fx-padding: 8;"
-                               GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                    <Label style="-fx-text-fill: #34495e; -fx-font-weight: bold;" text="Code Élève :" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                    <TextField fx:id="txtCodeEleve" promptText="Entrez le code de l'élève" style="-fx-prompt-text-fill: #bdc3c7; -fx-background-radius: 4; -fx-border-radius: 4; -fx-border-color: #dfe6e9; -fx-padding: 8;" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
                     <!-- Matiere -->
-                    <Label text="Matière :" style="-fx-text-fill: #34495e; -fx-font-weight: bold;" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-                    <ComboBox fx:id="comboMatier" promptText="Choisir la matière" 
-                              style="-fx-background-radius: 4; -fx-border-radius: 4; -fx-border-color: #dfe6e9; -fx-padding: 8;"
-                              GridPane.rowIndex="1" GridPane.columnIndex="1"
-                              onAction="#handleSelectionMatiere"/>
+                    <Label style="-fx-text-fill: #34495e; -fx-font-weight: bold;" text="Matière :" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                    <ComboBox fx:id="comboMatier" onAction="#handleSelectionMatiere" promptText="Choisir la matière" style="-fx-background-radius: 4; -fx-border-radius: 4; -fx-border-color: #dfe6e9; -fx-padding: 8;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
                     <!-- Note -->
-                    <Label text="Note :" style="-fx-text-fill: #34495e; -fx-font-weight: bold;" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
-                    <TextField fx:id="txtNote" promptText="Entrez la note (0-20)" 
-                               style="-fx-prompt-text-fill: #bdc3c7; -fx-background-radius: 4; -fx-border-radius: 4; -fx-border-color: #dfe6e9; -fx-padding: 8;"
-                               GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                    <Label style="-fx-text-fill: #34495e; -fx-font-weight: bold;" text="Note :" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                    <TextField fx:id="txtNote" promptText="Entrez la note (0-20)" style="-fx-prompt-text-fill: #bdc3c7; -fx-background-radius: 4; -fx-border-radius: 4; -fx-border-color: #dfe6e9; -fx-padding: 8;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+               <rowConstraints>
+                  <RowConstraints />
+                  <RowConstraints />
+                  <RowConstraints />
+               </rowConstraints>
                 </GridPane>
 
                 <!-- Buttons - Modern flat design -->
-                <HBox spacing="15" alignment="CENTER" style="-fx-padding: 20 0 0 0;">
-                    <Button fx:id="btnNouveau" text="Nouveau" onAction="#handleNouveau" 
-                            style="-fx-pref-width: 120; -fx-background-color: #3498db; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 4; -fx-padding: 8 16; -fx-cursor: hand;"/>
-                    <Button fx:id="btnAjouter" text="Ajouter" onAction="#handleAjouter" 
-                            style="-fx-pref-width: 120; -fx-background-color: #2ecc71; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 4; -fx-padding: 8 16; -fx-cursor: hand;"/>
-                    <Button fx:id="btnModifier" text="Modifier" onAction="#handleModifier" 
-                            style="-fx-pref-width: 120; -fx-background-color: #f39c12; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 4; -fx-padding: 8 16; -fx-cursor: hand;"/>
-                    <Button fx:id="btnSupprimer" text="Supprimer" onAction="#handleSupprimer" 
-                            style="-fx-pref-width: 120; -fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 4; -fx-padding: 8 16; -fx-cursor: hand;"/>
-                    <Button fx:id="btnRechercher" text="Rechercher" onAction="#handleRechercher" 
-                            style="-fx-pref-width: 120; -fx-background-color: #9b59b6; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 4; -fx-padding: 8 16; -fx-cursor: hand;"/>
+                <HBox alignment="CENTER" spacing="15" style="-fx-padding: 20 0 0 0;">
+                    <Button fx:id="btnNouveau" onAction="#handleNouveau" style="-fx-pref-width: 120; -fx-background-color: #3498db; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 4; -fx-padding: 8 16; -fx-cursor: hand;" text="Nouveau" />
+                    <Button fx:id="btnAjouter" onAction="#handleAjouter" style="-fx-pref-width: 120; -fx-background-color: #2ecc71; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 4; -fx-padding: 8 16; -fx-cursor: hand;" text="Ajouter" />
+                    <Button fx:id="btnModifier" onAction="#handleModifier" style="-fx-pref-width: 120; -fx-background-color: #f39c12; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 4; -fx-padding: 8 16; -fx-cursor: hand;" text="Modifier" />
+                    <Button fx:id="btnSupprimer" onAction="#handleSupprimer" style="-fx-pref-width: 120; -fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 4; -fx-padding: 8 16; -fx-cursor: hand;" text="Supprimer" />
+                    <Button fx:id="btnRechercher" onAction="#handleRechercher" style="-fx-pref-width: 120; -fx-background-color: #9b59b6; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 4; -fx-padding: 8 16; -fx-cursor: hand;" text="Rechercher" />
                 </HBox>
 
                 <!-- TableView for displaying all matieres and their grades -->
                 <TableView fx:id="tableMatieres" prefHeight="200" VBox.vgrow="ALWAYS">
                     <columns>
-                        <TableColumn fx:id="colDesignation" text="Matière" prefWidth="250" />
-                        <TableColumn fx:id="colNote" text="Note" prefWidth="100" />
+                        <TableColumn fx:id="colDesignation" prefWidth="250" text="Matière" />
+                        <TableColumn fx:id="colNote" prefWidth="100" text="Note" />
                     </columns>
                 </TableView>
 

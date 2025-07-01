@@ -49,7 +49,7 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Button fx:id="btn_login" layoutX="103.0" layoutY="256.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="123.0" style="-fx-cursor: hand; -fx-background-color: #8e8e8e;" text="Login" textAlignment="CENTER">
+            <Button fx:id="btn_login" layoutX="103.0" layoutY="256.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="123.0" style="-fx-cursor: hand; -fx-background-color: #4a6baf;" text="Login" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>

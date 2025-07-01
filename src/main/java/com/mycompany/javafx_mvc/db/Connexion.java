@@ -20,7 +20,7 @@ public class Connexion {
         if (connection == null) {
             try {
            
-                Class.forName("com.mysql.cj.jdbc.Driver");
+                Class.forName("com.mysql.jdbc.Driver");
 
                 connection = DriverManager.getConnection(URL, USER, PASSWORD);
                 System.out.println(" Connexion reussie !");

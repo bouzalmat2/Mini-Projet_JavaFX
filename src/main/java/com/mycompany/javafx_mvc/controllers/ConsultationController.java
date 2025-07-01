@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
+
 package com.mycompany.javafx_mvc.controllers;
 
 import java.net.URL;
@@ -28,11 +25,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-/**
- * FXML Controller class
- *
- * @author Dell
- */
+
+
 public class ConsultationController implements Initializable {
 
     @FXML private ComboBox<String> comboFiliere;
@@ -50,9 +44,7 @@ public class ConsultationController implements Initializable {
     private EleveDAO eleveDAO;
     private NoteDAO noteDAO;
 
-    /**
-     * Initializes the controller class.
-     */
+  
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         filiereDAO = new FiliereDAO();

@@ -7,6 +7,8 @@ import java.util.ResourceBundle;
 
 import com.mycompany.javafx_mvc.dao.EleveDAO;
 import com.mycompany.javafx_mvc.dao.FiliereDAO;
+import com.mycompany.javafx_mvc.dao.MatiereDAO;
+import com.mycompany.javafx_mvc.dao.NoteDAO;
 import com.mycompany.javafx_mvc.models.Eleve;
 
 import javafx.collections.FXCollections;
@@ -52,7 +54,6 @@ public class EtudiantsController implements Initializable {
         filiereDAO = new FiliereDAO();
         eleveDAO = new EleveDAO();
         
-        // Setup table columns
         colCode.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getCode()));
         colNom.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getNom()));
         colPrenom.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getPrenom()));
@@ -111,6 +112,13 @@ public class EtudiantsController implements Initializable {
 
         Eleve e = new Eleve( code, nom, prenom, niveau, codeFil);
         if (eleveDAO.AjouterEleve(e)) {
+            MatiereDAO matiereDAO = new MatiereDAO();
+            NoteDAO noteDAO = new NoteDAO();
+            List<com.mycompany.javafx_mvc.models.Matiere> matieres = matiereDAO.getMatier_Par_Filier_Et_Niveauet(codeFil, niveau);
+            for (com.mycompany.javafx_mvc.models.Matiere matiere : matieres) {
+                com.mycompany.javafx_mvc.models.Note note = new com.mycompany.javafx_mvc.models.Note(0, code, matiere.getCode(), -1.0);
+                noteDAO.ajouterNote(note);
+            }
             afficherAlerte(AlertType.INFORMATION, "Succes", "Etudiant ajoute avec succes.");
             rafraichirTable();
             nouveauEtudiant();
@@ -155,6 +163,10 @@ public class EtudiantsController implements Initializable {
         confirmation.showAndWait();
 
         if (confirmation.getResult() == ButtonType.YES) {
+            Eleve eleveToDelete = eleveDAO.getEleve_Par_code(code);
+            if (eleveToDelete != null) {
+                archive.ArchiveXMLUtil.archiverEleve(eleveToDelete);
+            }
             if (eleveDAO.supprimerEleve(code)) {
                 afficherAlerte(AlertType.INFORMATION, "Succes", "Etudiant supprime avec succes.");
                 rafraichirTable();
@@ -191,7 +203,6 @@ public class EtudiantsController implements Initializable {
             return;
         }
 
-        // If code is checked, ignore other criteria
         if (cbCode.isSelected()) {
             cbNom.setSelected(false);
             cbPrenom.setSelected(false);
